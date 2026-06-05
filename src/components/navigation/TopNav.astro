@@ -1,0 +1,50 @@
+---
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const navItems = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Clasificación', href: '/clasificaciones' },
+  { label: 'Puntuar', href: '/puntuaciones' },
+  { label: 'Roadbook', href: '/roadbook' },
+  { label: 'Galería', href: '/galeria' },
+  { label: 'Reglas', href: '/reglas' },
+];
+
+function isActive(href: string): boolean {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+---
+
+<header class="hidden md:block fixed top-0 left-0 right-0 z-50 bg-race-black shadow-sticky">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/" class="font-display font-bold text-white text-lg tracking-tight shrink-0">
+      Osbaldida 2026
+    </a>
+    <nav aria-label="Navegación de escritorio">
+      <ul class="flex items-center gap-1">
+        {navItems.map((item) => {
+          const active = isActive(item.href);
+          return (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  'px-3 py-2 rounded text-sm font-sans font-medium transition-colors',
+                  active ? 'text-yellow' : 'text-white/70 hover:text-white',
+                ]}
+                aria-current={active ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  </div>
+</header>
