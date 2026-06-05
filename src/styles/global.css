@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+/* ─── Font faces ──────────────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'InterTight';
+  src: url('/assets/fonts/InterTight-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'InterTight';
+  src: url('/assets/fonts/InterTight-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'InterTight';
+  src: url('/assets/fonts/InterTight-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'InterTight';
+  src: url('/assets/fonts/InterTight-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PTSansNarrow';
+  src: url('/assets/fonts/PTSansNarrow-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PTSansNarrow';
+  src: url('/assets/fonts/PTSansNarrow-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Design tokens ───────────────────────────────────────────────────────── */
+
+@theme {
+  /* Cycling identity */
+  --color-yellow: #FFBE00;
+  --color-race-black: #051408;
+  --color-green: #93E360;
+  --color-orange: #F96E12;
+
+  /* UI neutrals */
+  --color-bg: #F2F0EF;
+  --color-surface: #F5F3F3;
+  --color-stroke: #E5E3E3;
+  --color-text-secondary: #313131;
+  --color-muted: #676F68;
+
+  /* Extended green palette (green jersey card backgrounds) */
+  --color-green-ash: #2A570D;
+  --color-green-soft: #223D0D;
+
+  /* Top-3 podium accents */
+  --color-silver: #C0C0C0;
+  --color-bronze: #CD7F32;
+
+  /* Category badge colors (climb difficulty) */
+  --color-cat-hc: #051408;
+  --color-cat-1: #B91C1C;
+  --color-cat-2: #1D4ED8;
+  --color-cat-3: #15803D;
+
+  /* Jersey image fallback colors (used when image fails to load) */
+  --color-jersey-yellow: #FFBE00;
+  --color-jersey-green: #93E360;
+  --color-jersey-red: #EF4444;
+
+  /* Font families */
+  --font-sans: 'InterTight', Arial, sans-serif;
+  --font-display: 'PTSansNarrow', Arial, sans-serif;
+
+  /* Border radius */
+  --radius-pill: 40px;
+
+  /* Shadows / elevation */
+  --shadow-card: 0 12px 20px rgba(0, 0, 0, 0.04);
+  --shadow-card-elevated: 0 20px 50px rgba(0, 0, 0, 0.10);
+  --shadow-sticky: 0 5px 25px rgba(0, 0, 0, 0.25);
+  --shadow-modal: 0 16px 80px rgba(0, 0, 0, 0.06);
+  --shadow-fab: 0 0 28px rgba(0, 0, 0, 0.10);
+}
+
+/* ─── Base styles ─────────────────────────────────────────────────────────── */
+
+html {
+  background-color: var(--color-bg);
+  color: #051408;
+  /* Prevent font size inflation on orientation change */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'InterTight', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* All images are block by default to prevent inline gap */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Prevent layout breaks from images with no src */
+img[src=""],
+img:not([src]) {
+  visibility: hidden;
+}
+
+/* ─── Focus states ────────────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid #FFBE00;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ─── Touch interaction ───────────────────────────────────────────────────── */
+
+button,
+a,
+[role="button"],
+[role="tab"],
+label {
+  touch-action: manipulation;
+}
+
+button {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* ─── Custom utilities ────────────────────────────────────────────────────── */
+
+@utility pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@utility mb-safe {
+  margin-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Bottom clearance for content behind the fixed bottom nav (56px + safe area) */
+@utility pb-nav {
+  padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+}
+
+/* Jersey image sizing utilities */
+@utility jersey-row {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+@utility jersey-badge {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+}
+
+@utility jersey-card {
+  max-height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Minimum interactive tap target enforced at the element level where needed */
+@utility tap-target {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Consistent section headings across static pages */
+@utility section-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-race-black);
+}
+
+/* Hide scrollbar on horizontal chip/tab rows while keeping scroll */
+@utility scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

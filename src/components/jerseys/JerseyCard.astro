@@ -1,0 +1,52 @@
+---
+import JerseyImage from './JerseyImage.astro';
+
+interface Props {
+  imageSrc?: string;
+  imageAlt?: string;
+  fallbackColor?: string;
+  bgColor: string;
+  name: string;
+  holder?: string;
+  description: string;
+}
+
+const {
+  imageSrc,
+  imageAlt = '',
+  fallbackColor = '#676F68',
+  bgColor,
+  name,
+  holder,
+  description,
+} = Astro.props;
+---
+
+<div class="bg-white rounded-lg overflow-hidden shadow-card flex flex-col h-full">
+  <div
+    class="w-full flex items-center min-h-[108px] py-5 overflow-hidden"
+    style={`background-color: ${bgColor}`}
+  >
+    <slot name="image">
+      {imageSrc && (
+        <div class="w-full flex justify-center px-6">
+          <JerseyImage
+            src={imageSrc}
+            alt={imageAlt}
+            fallbackColor={fallbackColor}
+            class="h-20 w-16"
+          />
+        </div>
+      )}
+    </slot>
+  </div>
+  <div class="px-4 py-4 flex flex-col flex-1 gap-1">
+    <h3 class="font-sans font-semibold text-base text-race-black leading-tight">{name}</h3>
+    {holder ? (
+      <p class="font-display font-bold text-xl text-race-black">{holder}</p>
+    ) : (
+      <p class="font-display font-bold text-base text-muted">Por determinar</p>
+    )}
+    <p class="text-sm text-muted leading-relaxed mt-auto pt-2">{description}</p>
+  </div>
+</div>

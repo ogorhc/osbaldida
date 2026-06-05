@@ -1,0 +1,32 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  fallbackColor: string;
+  class?: string;
+  silhouette?: boolean;
+}
+
+const { src, alt, fallbackColor, class: className, silhouette = false } = Astro.props;
+---
+
+<span class:list={['inline-flex items-center justify-center shrink-0', className]}>
+  <img
+    src={src}
+    alt={alt}
+    class:list={[
+      'w-full h-full object-contain',
+      silhouette && 'brightness-0 opacity-45',
+    ]}
+    onerror="this.style.display='none'; this.nextElementSibling.removeAttribute('hidden')"
+  />
+  <span
+    hidden
+    aria-hidden="true"
+    class:list={[
+      'w-full h-full',
+      silhouette ? 'rounded-md' : 'rounded-full',
+    ]}
+    style={`background-color: ${fallbackColor}`}
+  ></span>
+</span>

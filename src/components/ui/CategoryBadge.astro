@@ -1,0 +1,28 @@
+---
+import type { ClimbCategory } from '@/data/climbs';
+
+interface Props {
+  category: ClimbCategory;
+  class?: string;
+}
+
+const { category, class: className } = Astro.props;
+
+const styles: Record<ClimbCategory, string> = {
+  'HC':  'bg-cat-hc text-white',
+  '1ª': 'bg-cat-1 text-white',
+  '2ª': 'bg-cat-2 text-white',
+  '3ª': 'bg-cat-3 text-white',
+};
+---
+
+<span
+  class:list={[
+    'inline-flex items-center shrink-0 px-2 py-0.5 rounded-md',
+    'text-[11px] font-sans font-bold uppercase tracking-wide',
+    styles[category],
+    className,
+  ]}
+>
+  {category}
+</span>
