@@ -1,0 +1,62 @@
+---
+import Layout from '../components/layout/Layout.astro';
+import PageContainer from '../components/layout/PageContainer.astro';
+import PageHeader from '../components/layout/PageHeader.astro';
+import EmptyState from '../components/ui/EmptyState.astro';
+---
+
+<Layout title="Galería" description="Fotos del evento Osbaldida 2026">
+
+  <PageHeader
+    title="Galería"
+    eyebrow="Fotos del evento"
+    description="Sube y consulta las fotos del evento por día."
+  />
+
+  <PageContainer>
+
+    {/* Filter chips — static placeholder */}
+    <div class="flex gap-2 mb-3 overflow-x-auto pb-1 scrollbar-none" aria-label="Filtros por día">
+      {['Todos', 'Viernes', 'Sábado', 'Domingo'].map((label, i) => (
+        <button
+          type="button"
+          class:list={[
+            'shrink-0 text-sm font-sans font-semibold px-4 py-2 rounded-md',
+            i === 0
+              ? 'bg-yellow text-race-black'
+              : 'bg-surface text-muted border border-stroke opacity-60 cursor-default',
+          ]}
+          aria-pressed={i === 0}
+          aria-disabled="true"
+          disabled
+        >
+          {label}
+        </button>
+      ))}
+    </div>
+
+    <p class="text-sm text-muted mb-6 leading-relaxed">
+      Los filtros por día estarán disponibles cuando se suban las primeras fotos.
+    </p>
+
+    {/* Upload notice */}
+    <div class="bg-surface border border-stroke rounded-lg p-5 mb-6 flex items-start gap-3">
+      <div class="w-10 h-10 rounded-full bg-white border border-stroke flex items-center justify-center shrink-0" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-muted">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+        </svg>
+      </div>
+      <div>
+        <p class="font-sans font-semibold text-base text-race-black mb-1">Subida de fotos próximamente</p>
+        <p class="text-base text-muted leading-relaxed">La galería estará disponible durante el evento. Podrás subir fotos desde aquí y verlas al momento.</p>
+      </div>
+    </div>
+
+    <EmptyState
+      title="Sin fotos aún"
+      description="Las fotos del evento aparecerán aquí cuando se suban."
+      icon="photos"
+    />
+
+  </PageContainer>
+</Layout>

@@ -1,0 +1,242 @@
+---
+export const prerender = true;
+
+import Layout from '../components/layout/Layout.astro';
+import PageContainer from '../components/layout/PageContainer.astro';
+import PageHeader from '../components/layout/PageHeader.astro';
+import ArrivalBonusCard from '../features/roadbook/ArrivalBonusCard.astro';
+import ClimbCard from '../features/roadbook/ClimbCard.astro';
+import RoadbookDayTabs from '../features/roadbook/RoadbookDayTabs.astro';
+import TimelineItem from '../features/roadbook/TimelineItem.astro';
+import { FRIDAY_CLIMBS, SATURDAY_CLIMBS } from '../data/climbs';
+---
+
+<Layout title="Roadbook" description="Programa completo de la Osbaldida 2026. Viernes 5 Junio — Domingo 7 Junio.">
+
+  <PageHeader
+    title="Roadbook"
+    eyebrow="Osbaldida 2026 · 5–7 Junio"
+    description="Programa oficial. Llodio → Angliru."
+  />
+
+  <PageContainer>
+
+    <RoadbookDayTabs>
+      <section slot="viernes" aria-labelledby="heading-viernes">
+      <div class="relative h-40 rounded-lg overflow-hidden mb-5">
+        <img
+          src="/assets/stages/etapa-viernes.webp"
+          alt="Etapa 1: Llodio → Oviedo"
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-race-black/30 to-race-black/80" aria-hidden="true"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-5">
+          <span class="bg-yellow text-race-black text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-md">
+            Puntuable
+          </span>
+          <h2 id="heading-viernes" class="font-display font-bold text-white text-[26px] leading-tight mt-1.5">
+            Etapa 1 — Viernes
+          </h2>
+          <p class="text-white/75 text-sm">5 Junio 2026 · Llodio → Oviedo</p>
+        </div>
+      </div>
+
+      <div class="mb-5">
+        <h3 class="font-sans font-semibold text-base text-race-black mb-3">Programa del día</h3>
+        <div class="relative">
+          <TimelineItem
+            time="16:30"
+            title="Concentración — Polideportivo Gardea, Llodio"
+            description="Primera emboscada oficial. Aritza y Oruga han quedado con Iker para andar en bici. Cuando se acerquen al polideportivo, les cortamos la carretera. Se entrega el disfraz oficial: Jonhy Labios Sellados."
+          />
+          <TimelineItem
+            time="~18:00"
+            title="Salida hacia Oviedo"
+            description="Parada de avituallamiento en ruta si se necesita comprar bebida o provisiones para el Angliru del sábado. Importante: lo que no se compre aquí, luego se llora en la montaña."
+          />
+          <TimelineItem
+            time="22:00"
+            title="Cena — Sidrería El Gato Negro"
+            description="Puerto 3 de la etapa. Puntuación por vasos bebidos durante la cena. La elegancia también cuenta."
+          />
+          <TimelineItem
+            title="Después de cenar — Calle Gascona"
+            description="Puerto 4 y último del viernes. Primer bar al que vayamos. Doble chupito: piruleta (+3) y Jäger (+8). Los dos a la vez = +11. Cada uno regula como buen escalador."
+            isLast={true}
+          />
+        </div>
+      </div>
+
+      <div class="mb-5">
+        <h3 class="font-sans font-semibold text-base text-race-black mb-3">Puertos puntuables</h3>
+        <div class="flex flex-col gap-3">
+          {FRIDAY_CLIMBS.map((climb) => <ClimbCard climb={climb} />)}
+        </div>
+      </div>
+
+      <ArrivalBonusCard />
+      </section>
+
+      <section slot="sabado" aria-labelledby="heading-sabado">
+      <div class="relative h-40 rounded-lg overflow-hidden mb-5">
+        <img
+          src="/assets/stages/etapa-sabado.webp"
+          alt="Etapa 2: Oviedo → Oviedo"
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-race-black/30 to-race-black/80" aria-hidden="true"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-5">
+          <span class="bg-yellow text-race-black text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-md">
+            Puntuable
+          </span>
+          <h2 id="heading-sabado" class="font-display font-bold text-white text-[26px] leading-tight mt-1.5">
+            Etapa 2 — Sábado
+          </h2>
+          <p class="text-white/75 text-sm">6 Junio 2026 · Oviedo → Oviedo</p>
+        </div>
+      </div>
+
+      <div class="mb-5">
+        <h3 class="font-sans font-semibold text-base text-race-black mb-3">Programa del día</h3>
+        <div class="relative">
+          <TimelineItem
+            time="10:00"
+            title="Entrega de maillots y control de firmas"
+            description="Entrega oficial de los maillots de equipo. También se entregan los primeros maillots especiales según resultados del viernes: amarillo, verde provisional y de puntos. El que tenga maillot, lo lleva desde este momento."
+          />
+          <TimelineItem
+            time="10:15"
+            title="Salida hacia el Angliru"
+            description="El coche que lleve a Iker sale algo más tarde para que el pelotón pueda colocarse por la subida del Angliru antes de que empiece a subir."
+          />
+          <TimelineItem
+            title="Puerto 1 — Viapará"
+            description="Iker empieza la subida desde Viapará. El resto se coloca por distintos puntos de la subida del Angliru para hacerle preguntas y pruebas."
+          />
+          <TimelineItem
+            title="Puerto 2 — Alto del Angliru"
+            description="Puerto central. Preguntas y pruebas durante toda la subida. Penalizaciones previstas: cuernos para la Cueña les Cabres, casco de astronauta, careta de Homer Simpson, beber, vestirse con cualquier cosa ridícula. Si alguien tiene disfraces, accesorios o pelucas, que los lleve. Foto de equipo en la cima si el tiempo lo permite."
+          />
+          <TimelineItem
+            title="Puerto 3 — Café Torero"
+            description="Después del Angliru, según cómo estén el clima, las piernas y la vergüenza: parar por Mieres (Opción A) o volver a Oviedo y hacer café torero (Opción B). Desde ahí, fuego hasta la noche."
+            isLast={true}
+          />
+        </div>
+      </div>
+
+      <div class="mb-5">
+        <h3 class="font-sans font-semibold text-base text-race-black mb-3">Puertos puntuables</h3>
+        <div class="flex flex-col gap-3">
+          {SATURDAY_CLIMBS.map((climb) => <ClimbCard climb={climb} />)}
+        </div>
+        <p class="text-sm text-muted mt-3">Puntuación manual asignada por la organización durante la etapa. <a href="/reglas#section-etapa2" class="underline underline-offset-2">Ver reglas →</a></p>
+      </div>
+      </section>
+
+      <section slot="domingo" aria-labelledby="heading-domingo">
+      <div class="relative h-40 rounded-lg overflow-hidden mb-5 bg-white">
+        <div class="absolute inset-0 bg-gradient-to-b from-white via-bg to-stroke/60" aria-hidden="true"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-5">
+          <span class="bg-surface text-muted text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-md border border-stroke">
+            Sin puntuación
+          </span>
+          <h2 id="heading-domingo" class="font-display font-bold text-race-black text-[26px] leading-tight mt-1.5">
+            Bajada y Meta
+          </h2>
+          <p class="text-muted text-sm">7 Junio 2026 · Regreso controlado</p>
+        </div>
+      </div>
+      <div class="mb-5">
+        <h3 class="font-sans font-semibold text-base text-race-black mb-3">Programa del día</h3>
+        <div class="relative">
+          <TimelineItem
+            title="Bajada y meta — Paseo de París"
+            description="El domingo no es etapa puntuable. Bajada neutralizada, tipo última jornada del Tour llegando a París: todo llano, sin ataques, sin puntos y con la clasificación prácticamente cerrada."
+          />
+          <TimelineItem
+            time="Antes 12:00"
+            title="Salida del alojamiento"
+            description="Checkout y salida controlada. Solo cuenta sobrevivir con dignidad, recoger, no perder nada y mantener una mirada medianamente humana."
+          />
+          <TimelineItem
+            title="Cierre Ronda 2 — Maillot verde"
+            description="La votación oficial del más mamado puede cerrarse el domingo como acto protocolario de final de carrera, no como etapa puntuable."
+          />
+          <TimelineItem
+            title="Regreso a casa"
+            description="Posible parada a comer a mitad de camino si el cuerpo aguanta. Cada uno tendrá sus quehaceres, sus dramas familiares, sus agujetas y su nivel de resaca."
+            isLast={true}
+          />
+        </div>
+      </div>
+      </section>
+    </RoadbookDayTabs>
+
+    {/* ── Información práctica ──────────────────────────────────────────── */}
+    <section class="mb-10" aria-labelledby="heading-info">
+      <h2 id="heading-info" class="font-display font-bold text-2xl text-race-black mb-4 tracking-tight">
+        Información práctica
+      </h2>
+      <div class="flex flex-col gap-3">
+
+        <div class="bg-white border border-stroke rounded-lg p-4">
+          <p class="text-[11px] font-semibold uppercase tracking-wider text-muted mb-1">Alojamiento</p>
+          <p class="font-sans font-semibold text-base text-race-black">Viviendas Oviedo Catedral</p>
+          <p class="text-sm text-muted mt-1">La calle de los apartamentos es peatonal. Dejar los coches antes de entrar.</p>
+        </div>
+
+        <div class="bg-white border border-stroke rounded-lg p-4">
+          <p class="text-[11px] font-semibold uppercase tracking-wider text-muted mb-1">Recogida de llaves</p>
+          <p class="font-sans font-semibold text-base text-race-black">Gran Hotel España</p>
+          <p class="text-sm text-muted">Calle Jovellanos, 2 — Oviedo</p>
+          <p class="text-sm text-muted mt-1">También informan sobre el parking público cercano con tarifas especiales para clientes.</p>
+        </div>
+
+        <div class="bg-white border border-stroke rounded-lg p-4">
+          <p class="text-[11px] font-semibold uppercase tracking-wider text-muted mb-1">Check-in</p>
+          <p class="font-sans font-semibold text-base text-race-black">DNI obligatorio</p>
+          <p class="text-sm text-muted mt-1">Todos deben presentar el DNI. El que no lleve DNI queda inscrito automáticamente como gregario sospechoso y puede perder puntos en la general.</p>
+        </div>
+
+        <div class="bg-white border border-stroke rounded-lg p-4">
+          <p class="text-[11px] font-semibold uppercase tracking-wider text-muted mb-1">Logística de coches</p>
+          <p class="font-sans font-semibold text-base text-race-black">Pendiente de confirmar</p>
+          <p class="text-sm text-muted mt-1">La organización comunicará la distribución de coches antes del evento.</p>
+        </div>
+
+      </div>
+    </section>
+
+    {/* ── Material obligatorio ─────────────────────────────────────────── */}
+    <section class="mb-10" aria-labelledby="heading-material">
+      <h2 id="heading-material" class="font-display font-bold text-2xl text-race-black mb-4 tracking-tight">
+        Material obligatorio
+      </h2>
+      <div class="bg-white border border-stroke rounded-lg divide-y divide-stroke overflow-hidden">
+        {[
+          { icon: '🪪', text: 'DNI para el check-in' },
+          { icon: '👟', text: 'Ropa deportiva' },
+          { icon: '🧥', text: 'Ropa de abrigo' },
+          { icon: '🌧️', text: 'Algo por si hace malo' },
+          { icon: '🍺', text: 'Bebida y provisiones para el Angliru' },
+          { icon: '🎭', text: 'Disfraces o accesorios ridículos' },
+          { icon: '💪', text: 'Actitud de etapa reina' },
+          { icon: '🤐', text: 'Respeto máximo a Jonhy Labios Sellados' },
+        ].map((item) => (
+          <div class="flex items-center gap-3 px-4 py-3.5 min-h-[52px]">
+            <span class="text-xl shrink-0 w-8 text-center" aria-hidden="true">{item.icon}</span>
+            <span class="text-base font-sans font-medium text-race-black">{item.text}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="pb-4 flex justify-center">
+      <a href="/reglas" class="text-base font-sans font-semibold text-muted underline underline-offset-2 active:opacity-70 tap-target inline-flex items-center px-2">
+        Ver las reglas completas →
+      </a>
+    </div>
+
+  </PageContainer>
+</Layout>

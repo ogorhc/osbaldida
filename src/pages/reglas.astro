@@ -1,0 +1,394 @@
+---
+export const prerender = true;
+
+import Layout from '../components/layout/Layout.astro';
+import PageContainer from '../components/layout/PageContainer.astro';
+import PageHeader from '../components/layout/PageHeader.astro';
+import CategoryBadge from '../components/ui/CategoryBadge.astro';
+import ArrivalBonusCard from '../features/roadbook/ArrivalBonusCard.astro';
+import { JERSEY_PATHS } from '../data/jerseys';
+import { TEAMS } from '../data/teams';
+---
+
+<Layout title="Reglas" description="Reglamento de la Osbaldida 2026">
+
+  <PageHeader
+    title="Reglas"
+    eyebrow="Reglamento"
+    description="Normas de maillots, puntuación y votaciones."
+  />
+
+  <PageContainer>
+
+    {/* ── Maillots ────────────────────────────────────────────────────────── */}
+    <section class="mb-6" aria-labelledby="section-maillots">
+      <h2 id="section-maillots" class="font-display font-bold text-2xl text-race-black mb-3 tracking-tight">
+        Maillots en juego
+      </h2>
+
+      <div class="divide-y divide-stroke border border-stroke rounded-lg overflow-hidden bg-white shadow-card">
+
+        <details class="group">
+          <summary class="list-none [&::-webkit-details-marker]:hidden flex items-center justify-between gap-3 p-4 cursor-pointer active:bg-bg tap-target">
+            <div class="flex items-center gap-3">
+              <img
+                src={JERSEY_PATHS.amarillo}
+                alt="Maillot amarillo"
+                class="h-10 w-auto object-contain"
+                onerror={`this.style.display='none'; this.nextElementSibling.removeAttribute('hidden')`}
+              />
+              <span hidden aria-hidden="true" class="w-8 h-8 rounded-full inline-block bg-yellow shrink-0"></span>
+              <span class="font-sans font-semibold text-base text-race-black">Maillot Amarillo</span>
+            </div>
+            <svg class="group-open:rotate-180 transition-transform duration-200 shrink-0 text-muted" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg>
+          </summary>
+          <div class="px-4 pb-5 pt-1 bg-white text-sm text-muted space-y-2 leading-relaxed">
+            <p>Para quien llegue <strong class="text-race-black">más tarde al hotel el sábado por la mañana</strong>, siempre que cumpla las tres condiciones:</p>
+            <ol class="list-decimal list-inside space-y-1 pl-1">
+              <li>Enviar selfie al grupo de WhatsApp al llegar al alojamiento.</li>
+              <li>Estar presente a la hora de salida del sábado.</li>
+              <li>Llegar tarde puntúa. No aparecer a la salida = abandono y descalificación.</li>
+            </ol>
+            <p>En caso de empate, se resuelve con el timestamp exacto del selfie en el grupo.</p>
+            <p>La validación es manual por parte de la organización.</p>
+          </div>
+        </details>
+
+        <details class="group">
+          <summary class="list-none [&::-webkit-details-marker]:hidden flex items-center justify-between gap-3 p-4 cursor-pointer active:bg-bg tap-target">
+            <div class="flex items-center gap-3">
+              <img
+                src={JERSEY_PATHS.verde}
+                alt="Maillot verde"
+                class="h-10 w-auto object-contain"
+                onerror={`this.style.display='none'; this.nextElementSibling.removeAttribute('hidden')`}
+              />
+              <span hidden aria-hidden="true" class="w-8 h-8 rounded-full inline-block bg-green shrink-0"></span>
+              <span class="font-sans font-semibold text-base text-race-black">Maillot Verde</span>
+            </div>
+            <svg class="group-open:rotate-180 transition-transform duration-200 shrink-0 text-muted" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg>
+          </summary>
+          <div class="px-4 pb-5 pt-1 bg-white text-sm text-muted space-y-2 leading-relaxed">
+            <p>Para el más regular en la fiesta, la actitud y la supervivencia. Se decide por <strong class="text-race-black">votación colectiva</strong>.</p>
+            <p>2 rondas de votación:</p>
+            <ul class="list-disc list-inside space-y-1 pl-1">
+              <li><strong class="text-race-black">Ronda 1 — Sábado mañana:</strong> evalúa el rendimiento del viernes.</li>
+              <li><strong class="text-race-black">Ronda 2 — Domingo:</strong> evalúa el rendimiento del sábado.</li>
+            </ul>
+            <p>El maillot verde provisional (sábado 10:00) se basa solo en la Ronda 1. El definitivo incluye ambas rondas.</p>
+          </div>
+        </details>
+
+        <details class="group">
+          <summary class="list-none [&::-webkit-details-marker]:hidden flex items-center justify-between gap-3 p-4 cursor-pointer active:bg-bg tap-target">
+            <div class="flex items-center gap-3">
+              <img
+                src={JERSEY_PATHS.puntos}
+                alt="Maillot de puntos"
+                class="h-10 w-auto object-contain"
+                onerror={`this.style.display='none'; this.nextElementSibling.removeAttribute('hidden')`}
+              />
+              <span hidden aria-hidden="true" class="w-8 h-8 rounded-full inline-block bg-[#EF4444] shrink-0"></span>
+              <span class="font-sans font-semibold text-base text-race-black">Maillot de Puntos</span>
+            </div>
+            <svg class="group-open:rotate-180 transition-transform duration-200 shrink-0 text-muted" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg>
+          </summary>
+          <div class="px-4 pb-5 pt-1 bg-white text-sm text-muted space-y-2 leading-relaxed">
+            <p>Para el especialista en puertos puntuables. Suma puntos en los <strong class="text-race-black">4 puertos del viernes</strong> y los <strong class="text-race-black">3 puertos del sábado</strong>.</p>
+            <p>También incluye el bono de llegada del viernes (los 5 últimos en llegar al hotel) y posibles bonificaciones o sanciones manuales de la organización.</p>
+            <p>El maillot provisional (sábado 10:00) se basa solo en los puntos del viernes.</p>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    {/* ── Equipos ─────────────────────────────────────────────────────────── */}
+    <section class="mb-6" aria-labelledby="section-equipos">
+      <h2 id="section-equipos" class="font-display font-bold text-2xl text-race-black mb-1 tracking-tight">
+        Equipos
+      </h2>
+      <p class="text-sm text-muted mb-3">Asignados por la organización antes del sábado.</p>
+
+      <div class="bg-white border border-stroke rounded-lg p-4 text-sm text-muted leading-relaxed space-y-2 shadow-card mb-3">
+        <p>La clasificación por equipos suma los puntos de todos los miembros activos de cada equipo. Gana el equipo con más puntos acumulados.</p>
+        <p>Los maillots se entregan el <strong class="text-race-black">sábado a las 10:00</strong> y se visten desde ese momento. El que tenga maillot, lo lleva.</p>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        {TEAMS.map((team) => (
+          <details class="group border border-stroke rounded-lg overflow-hidden bg-white shadow-card">
+            <summary class="list-none [&::-webkit-details-marker]:hidden flex items-center justify-between gap-3 p-4 cursor-pointer active:bg-bg tap-target">
+              <div class="flex items-center gap-3">
+                <img
+                  src={team.jerseyPath}
+                  alt={`Maillot ${team.name}`}
+                  class="h-10 w-auto object-contain"
+                  onerror={`this.style.display='none'; this.nextElementSibling.removeAttribute('hidden')`}
+                />
+                <span hidden aria-hidden="true" class="w-8 h-8 rounded-full inline-block shrink-0" style={`background-color: ${team.fallbackColor}`}></span>
+                <span class="font-sans font-semibold text-base text-race-black">{team.name}</span>
+              </div>
+              <svg class="group-open:rotate-180 transition-transform duration-200 shrink-0 text-muted" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </summary>
+            <div class="px-4 pb-5 pt-1 bg-white text-sm text-muted leading-relaxed">
+              <p>{team.description}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    {/* ── Puntuación Etapa 1 — Viernes ────────────────────────────────────── */}
+    <section class="mb-6" aria-labelledby="section-etapa1">
+      <h2 id="section-etapa1" class="font-display font-bold text-2xl text-race-black mb-1 tracking-tight">
+        Puntuación Etapa 1 — Viernes
+      </h2>
+      <p class="text-sm text-muted mb-3">Llodio → Oviedo · 4 puertos puntuables</p>
+
+      <div class="flex flex-col gap-3">
+
+        <details class="group border border-stroke rounded-lg overflow-hidden bg-white shadow-card">
+          <summary class="list-none [&::-webkit-details-marker]:hidden flex items-center justify-between gap-3 p-4 cursor-pointer active:bg-bg tap-target">
+            <div class="flex items-center gap-2">
+              <CategoryBadge category="3ª" />
+              <span class="font-sans font-semibold text-base text-race-black">Puerto 1 — Alto de Gardea</span>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <span class="text-sm font-semibold text-muted">máx +2</span>
+              <svg class="group-open:rotate-180 transition-transform duration-200 text-muted" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </div>
+          </summary>
+          <div class="px-4 pb-5 pt-1 bg-white">
+            <p class="text-xs font-semibold uppercase tracking-wider text-muted mb-2">La emboscada de Jonhy · 600 m</p>
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-stroke">
+                  <th class="text-left py-1.5 font-semibold text-race-black">Condición</th>
+                  <th class="text-right py-1.5 font-semibold text-race-black w-16">Puntos</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-stroke text-muted">
+                <tr><td class="py-1.5">2 o más cervezas o vinos</td><td class="text-right font-bold text-race-black">+2</td></tr>
+                <tr><td class="py-1.5">1 cerveza o vino</td><td class="text-right font-bold text-race-black">+1</td></tr>
+                <tr><td class="py-1.5">0</td><td class="text-right font-bold text-muted">0</td></tr>
+              </tbody>
+            </table>
+            <p class="text-xs text-muted mt-2">Evidencia: mostrar lo consumido a la organización.</p>
+          </div>
+        </details>
+
+        <details class="group border border-stroke rounded-lg overflow-hidden bg-white shadow-card">
+          <summary class="list-none [&::-webkit-details-marker]:hidden flex items-center justify-between gap-3 p-4 cursor-pointer active:bg-bg tap-target">
+            <div class="flex items-center gap-2">
+              <CategoryBadge category="2ª" />
+              <span class="font-sans font-semibold text-base text-race-black">Puerto 2 — Avituallamiento</span>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <span class="text-sm font-semibold text-muted">máx +8</span>
+              <svg class="group-open:rotate-180 transition-transform duration-200 text-muted" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </div>
+          </summary>
+          <div class="px-4 pb-5 pt-1 bg-white">
+            <p class="text-xs font-semibold uppercase tracking-wider text-muted mb-2">Enlace Llodio → Oviedo · 800 m</p>
+            <p class="text-sm text-muted mb-2">Prueba por equipos/coche. Cada coche recibe 3 cervezas por persona. Todos los miembros del mismo coche reciben la misma puntuación.</p>
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-stroke">
+                  <th class="text-left py-1.5 font-semibold text-race-black">Consumo del coche</th>
+                  <th class="text-right py-1.5 font-semibold text-race-black w-20">Por persona</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-stroke text-muted">
+                <tr><td class="py-1.5">100% de las latas</td><td class="text-right font-bold text-race-black">+8</td></tr>
+                <tr><td class="py-1.5">75% de las latas</td><td class="text-right font-bold text-race-black">+3</td></tr>
+                <tr><td class="py-1.5">50% de las latas</td><td class="text-right font-bold text-race-black">+1</td></tr>
+                <tr><td class="py-1.5">Menos del 50%</td><td class="text-right font-bold text-muted">0</td></tr>
+              </tbody>
+            </table>
+            <p class="text-xs text-muted mt-2">Evidencia: foto grupal con las latas antes de llegar a Oviedo.</p>
+          </div>
+        </details>
+
+        <details class="group border border-stroke rounded-lg overflow-hidden bg-white shadow-card">
+          <summary class="list-none [&::-webkit-details-marker]:hidden flex items-center justify-between gap-3 p-4 cursor-pointer active:bg-bg tap-target">
+            <div class="flex items-center gap-2">
+              <CategoryBadge category="HC" />
+              <span class="font-sans font-semibold text-base text-race-black">Puerto 3 — Gato Negro</span>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <span class="text-sm font-semibold text-muted">~+9</span>
+              <svg class="group-open:rotate-180 transition-transform duration-200 text-muted" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </div>
+          </summary>
+          <div class="px-4 pb-5 pt-1 bg-white">
+            <p class="text-xs font-semibold uppercase tracking-wider text-muted mb-2">La cena de equipo · 1400 m</p>
+            <p class="text-sm text-muted mb-2">Puntuación acumulativa. Se suman los puntos de cada categoría.</p>
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-stroke">
+                  <th class="text-left py-1.5 font-semibold text-race-black">Consumo</th>
+                  <th class="text-right py-1.5 font-semibold text-race-black w-24">Puntos</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-stroke text-muted">
+                <tr><td class="py-1.5">1 chupito suave (piruleta)</td><td class="text-right font-bold text-race-black">+1 por chupito</td></tr>
+                <tr><td class="py-1.5">3 vasos de sidra</td><td class="text-right font-bold text-race-black">+1</td></tr>
+                <tr><td class="py-1.5">1 chupito de orujo (máx 1)</td><td class="text-right font-bold text-race-black">+2</td></tr>
+                <tr><td class="py-1.5">1 vaso de vino/cerveza "de trago" (máx 2)</td><td class="text-right font-bold text-race-black">+3 por vaso</td></tr>
+              </tbody>
+            </table>
+            <p class="text-xs text-muted mt-2">Solo vasos completos. Máx 1 orujo. Máx 2 vasos de vino o cerveza. La organización asigna validadores.</p>
+          </div>
+        </details>
+
+        <details class="group border border-stroke rounded-lg overflow-hidden bg-white shadow-card">
+          <summary class="list-none [&::-webkit-details-marker]:hidden flex items-center justify-between gap-3 p-4 cursor-pointer active:bg-bg tap-target">
+            <div class="flex items-center gap-2">
+              <CategoryBadge category="1ª" />
+              <span class="font-sans font-semibold text-base text-race-black">Puerto 4 — Gascona</span>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <span class="text-sm font-semibold text-muted">máx +11</span>
+              <svg class="group-open:rotate-180 transition-transform duration-200 text-muted" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </div>
+          </summary>
+          <div class="px-4 pb-5 pt-1 bg-white">
+            <p class="text-xs font-semibold uppercase tracking-wider text-muted mb-2">Rampas de doble chupito · 1000 m</p>
+            <p class="text-sm text-muted mb-2">Dos opciones independientes. Ambas pueden puntuarse. Máximo una vez cada una por participante.</p>
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-stroke">
+                  <th class="text-left py-1.5 font-semibold text-race-black">Consumo</th>
+                  <th class="text-right py-1.5 font-semibold text-race-black w-20">Puntos</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-stroke text-muted">
+                <tr><td class="py-1.5">1 piruleta (chupito suave)</td><td class="text-right font-bold text-race-black">+3</td></tr>
+                <tr><td class="py-1.5">1 Jäger (chupito duro)</td><td class="text-right font-bold text-race-black">+8</td></tr>
+              </tbody>
+            </table>
+            <p class="text-xs text-muted mt-2">Los dos a la vez = +11. Máximo +11 por participante.</p>
+          </div>
+        </details>
+
+        <ArrivalBonusCard />
+
+      </div>
+    </section>
+
+    {/* ── Puntuación Etapa 2 — Sábado ─────────────────────────────────────── */}
+    <section class="mb-6" aria-labelledby="section-etapa2">
+      <h2 id="section-etapa2" class="font-display font-bold text-2xl text-race-black mb-1 tracking-tight">
+        Puntuación Etapa 2 — Sábado
+      </h2>
+      <p class="text-sm text-muted mb-3">Oviedo → Oviedo · 3 puertos puntuables</p>
+      <div class="bg-white border border-stroke rounded-lg p-4 text-sm text-muted leading-relaxed space-y-2 shadow-card">
+        <p>Los puertos del sábado son de puntuación manual. La organización asigna los puntos directamente por participante en cada puerto durante la etapa.</p>
+        <p>Cada entrada de puntos puede incluir motivo y nota de evidencia. Si la organización define reglas formales antes del evento, se publicarán aquí.</p>
+        <div class="space-y-3 mt-3">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <CategoryBadge category="2ª" />
+            <span class="text-race-black font-semibold text-base">Alto de Viapará</span>
+            <span class="text-muted text-base w-full sm:w-auto">— La salida del condenado</span>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <CategoryBadge category="HC" />
+            <span class="text-race-black font-semibold text-base">Alto del Angliru</span>
+            <span class="text-muted text-base w-full sm:w-auto">— La etapa reina</span>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <CategoryBadge category="1ª" />
+            <span class="text-race-black font-semibold text-base">Alto del Café Torero</span>
+            <span class="text-muted text-base w-full sm:w-auto">— Tercera semana</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── Domingo ─────────────────────────────────────────────────────────── */}
+    <section class="mb-6" aria-labelledby="section-domingo">
+      <h2 id="section-domingo" class="font-display font-bold text-2xl text-race-black mb-3 tracking-tight">
+        Domingo — Bajada y Meta
+      </h2>
+      <div class="bg-white border border-stroke rounded-lg p-4 text-sm text-muted leading-relaxed space-y-2 shadow-card">
+        <p>El domingo <strong class="text-race-black">no es etapa puntuable</strong>. Bajada neutralizada, sin ataques, sin puntos y con la clasificación prácticamente cerrada.</p>
+        <p>Salida del alojamiento <strong class="text-race-black">antes de las 12:00</strong>. Solo cuenta llegar vivos, recoger y volver a casa.</p>
+        <p>La votación oficial del más mamado (Ronda 2 del maillot verde) puede cerrarse el domingo como acto protocolario, pero no como etapa puntuable.</p>
+      </div>
+    </section>
+
+    {/* ── Maillot Verde — Votación ─────────────────────────────────────────── */}
+    <section class="mb-6" aria-labelledby="section-verde">
+      <h2 id="section-verde" class="font-display font-bold text-2xl text-race-black mb-3 tracking-tight">
+        Maillot Verde — Votación
+      </h2>
+      <div class="flex flex-col gap-3">
+        <div class="bg-white border border-stroke rounded-lg p-4 text-sm text-muted leading-relaxed shadow-card">
+          <p class="font-semibold text-race-black mb-2">¿Cuándo se vota?</p>
+          <ul class="space-y-1 list-disc list-inside">
+            <li><strong class="text-race-black">Ronda 1 — Sábado mañana:</strong> evalúa el rendimiento del viernes.</li>
+            <li><strong class="text-race-black">Ronda 2 — Domingo:</strong> evalúa el rendimiento del sábado.</li>
+          </ul>
+          <p class="mt-2">Votan todos los participantes. Los votos los introduce la organización.</p>
+        </div>
+        <div class="border border-stroke rounded-lg overflow-hidden bg-white shadow-card">
+          <table class="w-full text-sm">
+            <thead class="bg-race-black text-white">
+              <tr>
+                <th class="text-left px-4 py-2.5 font-semibold">Nivel por ronda</th>
+                <th class="text-right px-4 py-2.5 font-semibold w-20">Puntos</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stroke">
+              <tr class="bg-white"><td class="px-4 py-2.5 text-muted">Mejor actuación</td><td class="px-4 py-2.5 text-right font-bold text-race-black">+5</td></tr>
+              <tr class="bg-white"><td class="px-4 py-2.5 text-muted">Segunda mejor actuación</td><td class="px-4 py-2.5 text-right font-bold text-race-black">+3</td></tr>
+              <tr class="bg-white"><td class="px-4 py-2.5 text-muted">Tercera mejor actuación</td><td class="px-4 py-2.5 text-right font-bold text-race-black">+1</td></tr>
+              <tr class="bg-white"><td class="px-4 py-2.5 text-muted">Actuación fallida</td><td class="px-4 py-2.5 text-right font-bold text-race-black">−1</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="bg-white border border-stroke rounded-lg p-4 text-sm text-muted space-y-1 shadow-card">
+          <p><strong class="text-race-black">Reglas:</strong> los 4 niveles van a 4 participantes distintos. No se puede votar por uno mismo. En caso de empate, lo resuelve la organización.</p>
+        </div>
+      </div>
+    </section>
+
+    {/* ── Normas generales ────────────────────────────────────────────────── */}
+    <section class="mb-8" aria-labelledby="section-normas">
+      <h2 id="section-normas" class="font-display font-bold text-2xl text-race-black mb-3 tracking-tight">
+        Normas generales
+      </h2>
+      <div class="bg-white border border-stroke rounded-lg p-4 text-sm text-muted leading-relaxed space-y-2 shadow-card">
+        <p>Los maillots oficiales se entregan el <strong class="text-race-black">sábado a las 10:00</strong> y se visten desde ese momento. El que tenga maillot, lo lleva.</p>
+        <p>El <strong class="text-race-black">DNI es obligatorio</strong> para el check-in en el alojamiento. Sin DNI, el participante queda inscrito automáticamente como gregario sospechoso.</p>
+        <p>Respeto máximo a <strong class="text-race-black">Jonhy Labios Sellados</strong>. La sorpresa es parte del evento.</p>
+        <p>La organización se reserva el derecho de ajustar puntuaciones, aplicar sanciones, inventar bonificaciones y modificar el reglamento sin previo aviso, como en cualquier gran vuelta seria.</p>
+        <p>Se ruega puntualidad, implicación y <strong class="text-race-black">cero piedad con el homenajeado</strong>.</p>
+      </div>
+    </section>
+
+    <div class="pb-4 flex justify-center">
+      <a href="/roadbook" class="text-base font-sans font-semibold text-muted underline underline-offset-2 active:opacity-70 tap-target inline-flex items-center px-2">
+        Ver el roadbook completo →
+      </a>
+    </div>
+
+  </PageContainer>
+</Layout>

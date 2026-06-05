@@ -1,0 +1,38 @@
+---
+const rows: { label: string; points: string; highlight?: boolean }[] = [
+  { label: 'Último', points: '+5', highlight: true },
+  { label: '2º más tarde', points: '+4' },
+  { label: '3º más tarde', points: '+3' },
+  { label: '4º más tarde', points: '+2' },
+  { label: '5º más tarde', points: '+1' },
+];
+---
+
+<div class="bg-white border border-stroke rounded-lg overflow-hidden shadow-card">
+  <div class="px-4 py-3.5 border-b border-stroke bg-surface/60">
+    <div class="flex items-start justify-between gap-3">
+      <div>
+        <p class="font-sans font-semibold text-base text-race-black leading-tight">Bono de llegada</p>
+        <p class="text-sm text-muted mt-1 leading-snug">Los 5 últimos en llegar al hotel suman puntos extra.</p>
+      </div>
+      <span class="shrink-0 bg-yellow text-race-black text-[10px] font-bold uppercase tracking-wide px-2 py-1 rounded-md">
+        Viernes
+      </span>
+    </div>
+  </div>
+  <ul class="divide-y divide-stroke">
+    {rows.map((row) => (
+      <li
+        class:list={[
+          'flex items-center justify-between gap-3 px-4 py-3 min-h-[48px]',
+          row.highlight && 'border-l-4 border-l-yellow bg-yellow/5',
+        ]}
+      >
+        <span class:list={['text-sm', row.highlight ? 'font-semibold text-race-black' : 'text-muted']}>
+          {row.label}
+        </span>
+        <span class="font-display font-bold text-lg text-race-black tabular-nums">{row.points}</span>
+      </li>
+    ))}
+  </ul>
+</div>

@@ -1,0 +1,24 @@
+---
+import Layout from '../components/layout/Layout.astro';
+import PageContainer from '../components/layout/PageContainer.astro';
+import PageHeader from '../components/layout/PageHeader.astro';
+import EmptyState from '../components/ui/EmptyState.astro';
+---
+
+<Layout title="Puntuar" description="Panel de puntuación — acceso restringido">
+
+  <PageHeader
+    title="Puntuar"
+    eyebrow="Panel de administración"
+    description="Entrada de puntuaciones, votaciones y asignación de equipos."
+  />
+
+  <PageContainer>
+    <EmptyState
+      icon="lock"
+      title="Acceso restringido"
+      description="El panel de puntuación estará disponible antes del evento. Se accede mediante un código compartido."
+    />
+  </PageContainer>
+
+</Layout>

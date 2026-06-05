@@ -1,0 +1,35 @@
+---
+import CategoryBadge from '@/components/ui/CategoryBadge.astro';
+import type { Climb } from '@/data/climbs';
+
+interface Props {
+  climb: Climb;
+}
+
+const { climb } = Astro.props;
+---
+
+<div class="bg-white border border-stroke rounded-lg p-4 flex gap-3 items-start shadow-card">
+  <div class="pt-0.5">
+    <CategoryBadge category={climb.category} />
+  </div>
+  <div class="flex-1 min-w-0">
+    <p class="font-sans font-semibold text-base text-race-black leading-snug">
+      Puerto {climb.order} — {climb.name}
+    </p>
+    {climb.nickname && (
+      <p class="text-sm text-muted italic mt-0.5">{climb.nickname}</p>
+    )}
+    <div class="flex flex-wrap items-center gap-x-3 mt-1.5">
+      {climb.altitude && (
+        <span class="text-sm text-muted">↑ {climb.altitude}</span>
+      )}
+      {climb.maxPoints && (
+        <span class="text-sm font-semibold text-race-black">máx {climb.maxPoints}</span>
+      )}
+    </div>
+    {climb.programmeNote && (
+      <p class="text-sm text-muted mt-2 leading-snug">{climb.programmeNote}</p>
+    )}
+  </div>
+</div>

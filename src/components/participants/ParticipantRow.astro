@@ -1,0 +1,42 @@
+---
+import JerseyImage from '../jerseys/JerseyImage.astro';
+import type { Participant } from '@/data/participants';
+import type { Team } from '@/data/teams';
+import { TEAM_JERSEY_PATHS } from '@/data/jerseys';
+
+interface Props {
+  participant: Participant;
+  team?: Team | null;
+}
+
+const { participant, team } = Astro.props;
+const fullName = `${participant.firstName} ${participant.lastName}`;
+---
+
+<div
+  class="rounded-lg px-4 py-3.5 shadow-card flex items-center gap-3.5 bg-white"
+  style={team ? `background-color: ${team.bgColor}` : undefined}
+>
+  {team ? (
+    <JerseyImage
+      src={team.jerseyPath}
+      alt={`Maillot ${team.name}`}
+      fallbackColor={team.fallbackColor}
+      class="h-14 w-11 shrink-0"
+    />
+  ) : (
+    <JerseyImage
+      src={TEAM_JERSEY_PATHS.mapei}
+      alt="Equipo por asignar"
+      fallbackColor="#B8B8B8"
+      class="h-14 w-11 shrink-0"
+      silhouette
+    />
+  )}
+  <div class="min-w-0 flex-1">
+    <p class="font-display font-bold text-2xl text-race-black leading-tight">
+      {participant.nickname}
+    </p>
+    <p class="text-sm text-muted mt-0.5">{fullName}</p>
+  </div>
+</div>

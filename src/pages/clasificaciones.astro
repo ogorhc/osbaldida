@@ -1,0 +1,60 @@
+---
+import Layout from '../components/layout/Layout.astro';
+import PageContainer from '../components/layout/PageContainer.astro';
+import PageHeader from '../components/layout/PageHeader.astro';
+import EmptyState from '../components/ui/EmptyState.astro';
+---
+
+<Layout title="Clasificaciones" description="Clasificaciones generales y por jersey">
+
+  <PageHeader
+    title="Clasificaciones"
+    eyebrow="Clasificación general"
+    description="General, por etapa, maillot verde, equipos y jerseys actuales."
+  />
+
+  <PageContainer>
+
+    {/* Tab hints — static placeholder until Phase 6 */}
+    <div
+      class="flex gap-2 mb-3 overflow-x-auto pb-1 scrollbar-none"
+      role="tablist"
+      aria-label="Tipos de clasificación"
+    >
+      {[
+        { label: 'General', active: true },
+        { label: 'Etapa', active: false },
+        { label: 'Verde', active: false },
+        { label: 'Equipos', active: false },
+        { label: 'Jerseys', active: false },
+      ].map(({ label, active }) => (
+        <button
+          type="button"
+          role="tab"
+          class:list={[
+            'shrink-0 text-sm font-sans font-semibold px-4 py-2 rounded-md',
+            active
+              ? 'bg-yellow text-race-black'
+              : 'bg-surface text-muted border border-stroke opacity-60 cursor-default',
+          ]}
+          aria-selected={active}
+          aria-disabled="true"
+          disabled
+        >
+          {label}
+        </button>
+      ))}
+    </div>
+
+    <p class="text-sm text-muted mb-6 leading-relaxed">
+      Las pestañas estarán activas cuando se conecten los datos del evento. Por ahora solo se muestra la vista general.
+    </p>
+
+    <EmptyState
+      title="Sin datos aún"
+      description="Las clasificaciones se mostrarán cuando se registren los primeros puntos del evento."
+      icon="chart"
+    />
+
+  </PageContainer>
+</Layout>

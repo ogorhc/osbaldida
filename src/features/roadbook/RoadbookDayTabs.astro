@@ -1,0 +1,91 @@
+---
+const tabBase =
+  'shrink-0 text-xs font-semibold px-2.5 py-2.5 rounded-md transition-colors';
+const tabActive = 'bg-yellow text-race-black';
+const tabInactive = 'bg-surface text-race-black border border-stroke';
+---
+
+<div id="roadbook-day-tabs" class="mb-10">
+  <div
+    class="flex gap-2 overflow-x-auto pb-1 scrollbar-none"
+    role="tablist"
+    aria-label="Días del evento"
+  >
+    <button
+      type="button"
+      role="tab"
+      id="tab-viernes"
+      aria-controls="panel-viernes"
+      aria-selected="true"
+      data-tab="viernes"
+      class:list={[tabBase, tabActive]}
+    >
+      Viernes 5 Jun
+    </button>
+    <button
+      type="button"
+      role="tab"
+      id="tab-sabado"
+      aria-controls="panel-sabado"
+      aria-selected="false"
+      data-tab="sabado"
+      class:list={[tabBase, tabInactive]}
+    >
+      Sábado 6 Jun
+    </button>
+    <button
+      type="button"
+      role="tab"
+      id="tab-domingo"
+      aria-controls="panel-domingo"
+      aria-selected="false"
+      data-tab="domingo"
+      class:list={[tabBase, tabInactive]}
+    >
+      Domingo 7 Jun
+    </button>
+  </div>
+
+  <div class="mt-5">
+    <div id="panel-viernes" role="tabpanel" aria-labelledby="tab-viernes" data-panel="viernes">
+      <slot name="viernes" />
+    </div>
+    <div id="panel-sabado" role="tabpanel" aria-labelledby="tab-sabado" data-panel="sabado" hidden>
+      <slot name="sabado" />
+    </div>
+    <div id="panel-domingo" role="tabpanel" aria-labelledby="tab-domingo" data-panel="domingo" hidden>
+      <slot name="domingo" />
+    </div>
+  </div>
+</div>
+
+<script>
+  const root = document.getElementById('roadbook-day-tabs');
+  if (!root) throw new Error('roadbook-day-tabs root not found');
+
+  const tabButtons = root.querySelectorAll<HTMLButtonElement>('[data-tab]');
+  const panels = root.querySelectorAll<HTMLElement>('[data-panel]');
+
+  const tabActive = 'bg-yellow text-race-black';
+  const tabInactive = 'bg-surface text-race-black border border-stroke';
+
+  function setActiveTab(tabId: string) {
+    tabButtons.forEach((button) => {
+      const isActive = button.dataset.tab === tabId;
+      button.setAttribute('aria-selected', String(isActive));
+      button.classList.remove(...tabActive.split(' '), ...tabInactive.split(' '));
+      button.classList.add(...(isActive ? tabActive : tabInactive).split(' '));
+    });
+
+    panels.forEach((panel) => {
+      panel.hidden = panel.dataset.panel !== tabId;
+    });
+  }
+
+  tabButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const tabId = button.dataset.tab;
+      if (tabId) setActiveTab(tabId);
+    });
+  });
+</script>
